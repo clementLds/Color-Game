@@ -1,0 +1,43 @@
+/* HEADER */
+
+body
+{
+    font-family:'Lato', sans-serif;
+    padding: 0px;
+    margin:0px;
+}
+
+header
+{
+    width: 100vw;
+    height: 20vh;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #0B173B,#084B8A);
+}
+
+.container
+{
+    width:80%;
+    height:100%;
+    //background-color: red;
+    margin: 0 auto;
+}
+
+.headerTitle, .headerSubTitle{
+    color:#ffffff;
+} 
+
+.headerTitle
+{
+    font-size: 3vw;
+    margin: 0px;
+    padding-top: 5vh; 
+}
+
+.headerSubTitle{
+    font-size: 1.3vw;
+    margin: 0px;
+    padding-top: 2vh;
+    text-align:middle;
+
+}
