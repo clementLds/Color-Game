@@ -10,18 +10,28 @@ window.onload = function(){
 
     /* color grid */
     var classicColors=["blue", "yellow", "green", "purple", "black", "gray", "pink", "red", "orange", "brown"];
+    var currentColorSequence = [];
     var gridWidth = 600;
     var gridHeight = 600;
     var blockSize = 200;
     var gridCtx;
 
+    /* flags */
+    var gameOver = true;
+    var rightColorWasClicked = false;
+    var askedColor = "";
+
     /* main */
     init();
-    count();
-    drawGrid();
-    //document.getElementById("mydiv").innerHTML = "str1".fontcolor("red");
 
     /* functions */
+
+    function getCursorPosition(canvas, event) {
+    const rect = canvas.getBoundingClientRect()
+    const x = event.clientX - rect.left
+    const y = event.clientY - rect.top
+    console.log("x: " + x + " y: " + y)
+}
     
     function init(){
         initGrid();
@@ -35,10 +45,13 @@ window.onload = function(){
         gridCanvas.style.border = "10px solid #444";
         gridCanvas.style.margin = "50px auto auto 300px";
         gridCanvas.style.display = "block";
-         gridCanvas.style.float = "left";
+        gridCanvas.style.float = "left";
         gridCanvas.style.backgroundColor = "#ddd";
-        document.body.appendChild(gridCanvas);
         gridCtx = gridCanvas.getContext('2d');
+        document.getElementById("colorGrid").appendChild(gridCanvas);
+        gridCanvas.addEventListener('mousedown', function(e) {
+        getCursorPosition(gridCanvas, e)
+        })
     }
 
     function initChrono(){
@@ -49,8 +62,24 @@ window.onload = function(){
         chronoCanvas.style.margin = "50px  50px auto auto";
         chronoCanvas.style.display = "block";
         chronoCanvas.style.backgroundColor = "#ddd";
-        document.body.appendChild(chronoCanvas);
         chronoCtx = chronoCanvas.getContext('2d');
+        document.getElementById("chrono").appendChild(chronoCanvas);
+    }
+
+    function play(){
+        if(gameOver){ // no game running
+            gameOver = false;
+            count();
+            while(counterClock>0){
+                if(rightColorWasClicked){
+                    rightColorWasClicked = false;
+                    drawGrid();
+                    askNewColor();
+                }
+                //element.onclick = functionRef
+            }
+            gameOver = true;
+        }
     }
 
     function count(){
@@ -71,11 +100,11 @@ window.onload = function(){
     }
 
     function drawGrid(){
-        var newColorSequence = getClassicColorSequence();
-        console.log(newColorSequence);
+        currentColorSequence = getClassicColorSequence();
+        console.log(currentColorSequence);
         for (var i=0;i<9;i++){
-            gridCtx.fillStyle = newColorSequence[i];
-            console.log(newColorSequence[i]);
+            gridCtx.fillStyle = currentColorSequence[i];
+            console.log(currentColorSequence[i]);
             if(i<3){
                 drawBlock(gridCtx, [i,0]);
             } else if(i<6){
@@ -84,6 +113,7 @@ window.onload = function(){
                 drawBlock(gridCtx, [i-6,2]);
             }
         }
+        return currentColorSequence;
     }
 
     function drawCounter(){
@@ -102,15 +132,15 @@ window.onload = function(){
     }
 
     function getClassicColorSequence(){
-        var mySequence = [];
+        var newColorSequence = [];
         var randomColor;
-        while (mySequence.length<9){
+        while (newColorSequence.length<9){
             randomColor = classicColors[getRandomInt(10)];
-            if (!inArray(randomColor, mySequence)){
-                mySequence.push(randomColor);
+            if (!inArray(randomColor, newColorSequence)){
+                newColorSequence.push(randomColor);
             }
         }
-        return mySequence;
+        return newColorSequence;
     }
 
     function inArray(element, array){
@@ -122,6 +152,12 @@ window.onload = function(){
         }
     }
     return false;
+    }
+
+    function askNewColor(){
+        var index = getRandomInt(currentColorSequence.length);
+        askedColor = currentColorSequence[index];
+        document.getElementById("askedColor").innerHTML = askedColor.fontcolor(askedColor);
     }
     
 }
