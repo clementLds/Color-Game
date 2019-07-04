@@ -10,16 +10,15 @@ body
 header
 {
     width: 100vw;
-    height: 20vh;
+    height:200px;
     text-align: center;
     background-image: linear-gradient(to bottom, #0B173B,#084B8A);
 }
 
 .container
 {
-    width:80%;
+    width:50%;
     height:100%;
-    //background-color: red;
     margin: 0 auto;
 }
 
@@ -29,15 +28,139 @@ header
 
 .headerTitle
 {
-    font-size: 3vw;
+    font-size: 50px;
     margin: 0px;
-    padding-top: 5vh; 
+    padding-top: 70px; 
 }
 
 .headerSubTitle{
-    font-size: 1.3vw;
+    font-size: 26px;
     margin: 0px;
-    padding-top: 2vh;
-    text-align:middle;
-
+    padding-top: 30px;
+    padding-right:10px;
+    padding-left:10px;
+    text-align:right;
 }
+
+@media screen and (min-width:1201px) and (max-width:1500px)
+{
+    header
+    {
+        height:190px;
+    }
+
+    .container
+    {
+        width:58%;
+    } 
+
+    .headerTitle
+    {
+        font-size: 48px;
+        padding-top: 65px; 
+    }
+
+    .headerSubTitle{
+        font-size: 25px;
+        padding-top: 30px;
+    }
+}
+
+@media screen and (min-width:992px) and (max-width:1200px)
+{
+    header
+    {
+        height:180px;
+    }
+
+    .container
+    {
+        width:66%;
+    } 
+
+    .headerTitle
+    {
+        font-size: 46px;
+        padding-top: 60px; 
+    }
+
+    .headerSubTitle{
+        font-size: 24px;
+        padding-top: 28px;
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:991px)
+{
+    header
+    {
+        height:165px;
+    }
+
+    .container
+    {
+        width:80%;
+    } 
+
+    .headerTitle
+    {
+        font-size: 42px;
+        padding-top: 55px; 
+    }
+
+    .headerSubTitle{
+        font-size: 22px;
+        padding-top: 25px;
+    }
+}
+
+@media screen and (min-width:576px) and (max-width:767px)
+{
+    header
+    {
+        height:150px;
+    }
+
+    .container
+    {
+        width:94%;
+    } 
+
+    .headerTitle
+    {
+        font-size: 38px;
+        padding-top: 50px; 
+    }
+
+    .headerSubTitle{
+        font-size: 22px;
+        padding-top: 20px;
+        text-align:center;
+    }
+}
+
+@media screen and (min-width:0px) and (max-width:575px)
+{
+    header
+    {
+        height:150px;
+    }
+    
+    .container
+    {
+        width:62%;
+    } 
+
+    .headerTitle
+    {
+        font-size:35px;
+        padding-top: 25px; 
+    }
+
+    .headerSubTitle{
+        font-size: 17px;
+        padding-top: 13px;
+        text-align:center;
+    }
+}
+
