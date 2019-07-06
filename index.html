@@ -5,21 +5,71 @@
         <title>Color Game</title>
         <link rel="stylesheet" href="css//style.css">
         <script src="js//script.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     </head>
 
     <body>
         <header>
-            <div class="container">
+            <div class="headerContainer">
                 <h1 class="headerTitle">Welcome to the Color-Game !</h1>
                 <h2 class="headerSubTitle">Made by Clément Landais</h2>
             </div>
         </header>
         <div id="game">
-            <div id="colorGrid"></div>
-            <div id="chrono"></div>
-            <div id="askedColor"></div>
-            <div id="score"></div>
-            <div id="bestScore"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 marginTop50px">
+                        <div id="colorGrid"></div>
+                    </div>
+                    <div class="col-md-4 marginTop50px sideBar">
+                        <div class="chronoContainer">
+                            <h3>Timer</h3>
+                            <div id="chrono"></div>
+                        </div>
+                        <div class="askedColorContainer">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h3>Asked color:</h3>
+                                </div>
+                                <div class="col-xs-6 jsTextElement">
+                                    <div id="askedColor"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scoreContainer">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h3>Your score:</h3>
+                                </div>
+                                <div class="col-xs-6 jsTextElement">
+                                    <div id="score"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bestScoreContainer">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h3>Best score:</h3>
+                                </div>
+                                <div class="col-xs-6 jsTextElement">
+                                    <div id="bestScore"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttonsContainer">
+                            <div class="row elements-align-">
+                                <div class="col-xs-6">
+                                    <button class="favorite styled" type="button" onclick="setToNormalMode()">Normal</button>
+                                </div>
+                                <div class="col-xs-6">
+                                    <button class="favorite styled" type="button" onclick="setToHardMode()">Hard</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 

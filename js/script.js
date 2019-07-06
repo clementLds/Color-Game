@@ -14,8 +14,9 @@ window.onload = function(){
 
     /* color grid */
     var classicColors=["blue", "yellow", "green", "purple", "black", "gray", "pink", "red", "orange", "brown"];
+    var hardColors=["blue", "yellow", "green", "purple", "black", "gray", "pink", "red", "orange", "brown"];
     var currentColorBoxSequence = [];
-    var gridSize = 600;
+    var gridSize = Math.min(600, window.innerWidth*0.8, window.innerHeight*0.8);
     var blockSize = gridSize/3;
     var gridCanvasBorderWidth = 10; // in pixels
     var gridCtx;
@@ -31,6 +32,7 @@ window.onload = function(){
     var askedColorBox;
     var xClick = -100;
     var yClick = -100;
+    var difficulty = "normal";
 
     /* MAIN PROGRAM */
 
@@ -52,9 +54,8 @@ window.onload = function(){
         gridCanvas.width = gridSize;
         gridCanvas.height = gridSize;
         gridCanvas.style.border = gridCanvasBorderWidth.toString()+"px solid #444";
-        gridCanvas.style.margin = "50px auto auto 300px";
+        gridCanvas.style.margin = "auto";
         gridCanvas.style.display = "block";
-        gridCanvas.style.float = "left";
         gridCanvas.style.backgroundColor = "#ddd";
         gridCtx = gridCanvas.getContext('2d');
         document.getElementById("colorGrid").appendChild(gridCanvas);
@@ -71,10 +72,10 @@ window.onload = function(){
         var chronoCanvas = document.createElement('canvas');
         chronoCanvas.width = chronoWidth;
         chronoCanvas.height = chronoHeight;
-        chronoCanvas.style.border = "2px solid black";
-        chronoCanvas.style.margin = "50px  50px auto auto";
+        chronoCanvas.style.border = "1px solid black";
+        chronoCanvas.style.margin = "auto";
         chronoCanvas.style.display = "block";
-        chronoCanvas.style.backgroundColor = "#ddd";
+        chronoCanvas.style.backgroundColor = "#eee";
         chronoCtx = chronoCanvas.getContext('2d');
         document.getElementById("chrono").appendChild(chronoCanvas);
     }
@@ -84,6 +85,8 @@ window.onload = function(){
         if(gameOver){ // no game running
             gameOver = false;
             score = 0;
+            xClick = -100;
+            yClick = -100;
             firstLoop = true;
             counterClock=gameLength;
             count();
@@ -233,6 +236,16 @@ window.onload = function(){
         var askedColorBoxIndex = getRandomInt(currentColorBoxSequence.length);
         askedColorBox = currentColorBoxSequence[askedColorBoxIndex];
         document.getElementById("askedColor").innerHTML = askedColorBox.color.fontcolor(askedColorBox.color);
+    }
+
+    /* This function set the difficulty to normal */
+    function setToNormalMode(){
+        difficulty = "normal";
+    }
+
+     /* This function set the difficulty to hard */
+    function setToHardMode(){
+        difficulty = "hard";
     }
 
     /* CLASSES */
