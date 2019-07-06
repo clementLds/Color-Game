@@ -1,0 +1,294 @@
+/* GENERAL */
+
+body
+{
+    font-family:'Lato', sans-serif !important;
+    padding:0px;
+    margin:0px;
+}
+
+/* HEADER */
+
+header
+{
+    width:100vw;
+    height:200px;
+    text-align: center;
+    background-image: linear-gradient(to bottom, #0B173B,#084B8A);
+    padding:0px;
+}
+
+.headerContainer
+{
+    width:700px;
+    height:100%;
+    margin: 0 auto;
+    padding:0px;
+}
+
+.headerTitle, .headerSubTitle{
+    color:#ffffff;
+    font-weight:bold;
+} 
+
+.headerTitle
+{
+    font-size: 50px;
+    margin: 0;
+    padding-top: 70px;
+}
+
+.headerSubTitle{
+    font-size: 26px;
+    margin: 0px;
+    padding: 30px 10px 0;
+    text-align:right;
+}
+
+/* XL */
+@media screen and (min-width:1201px) and (max-width:1500px)
+{
+    header
+    {
+        height:190px;
+    }
+
+    .headerContainer
+    {
+        width:676px;
+    } 
+
+    .headerTitle
+    {
+        font-size: 48px;
+        padding-top: 65px; 
+    }
+
+    .headerSubTitle{
+        font-size: 25px;
+        padding-top: 30px;
+    }
+}
+
+/* LG */
+@media screen and (min-width:992px) and (max-width:1200px)
+{
+    header
+    {
+        height:180px;
+    }
+
+    .headerContainer
+    {
+        width:650px;
+    } 
+
+    .headerTitle
+    {
+        font-size: 46px;
+        padding-top: 60px; 
+    }
+
+    .headerSubTitle{
+        font-size: 24px;
+        padding-top: 28px;
+    }
+}
+
+/* MD */
+@media screen and (min-width:768px) and (max-width:991px)
+{
+    header
+    {
+        height:165px;
+    }
+
+    .headerContainer
+    {
+        width:590px;
+    } 
+
+    .headerTitle
+    {
+        font-size: 42px;
+        padding-top: 55px; 
+    }
+
+    .headerSubTitle{
+        font-size: 22px;
+        padding-top: 25px;
+    }
+}
+
+/* SM */
+@media screen and (min-width:576px) and (max-width:767px)
+{
+    header
+    {
+        height:150px;
+    }
+
+    .headerContainer
+    {
+        width:540px;
+    } 
+
+    .headerTitle
+    {
+        font-size: 38px;
+        padding-top: 50px; 
+    }
+
+    .headerSubTitle{
+        font-size: 22px;
+        padding-top: 20px;
+        text-align:center;
+    }
+}
+
+/* XS */
+@media screen and (min-width:0px) and (max-width:575px)
+{
+    header
+    {
+        height:150px;
+    }
+    
+    .headerContainer
+    {
+        width:280px;
+    } 
+
+    .headerTitle
+    {
+        font-size:35px;
+        padding-top: 25px; 
+    }
+
+    .headerSubTitle{
+        font-size: 17px;
+        padding-top: 13px;
+        text-align:center;
+    }
+}
+
+/* GAME */
+
+.marginTop50px{
+    margin-top: 50px !important;
+}
+
+.sideBar{
+    background-color: #ddd;
+    border:2px solid #222;
+    display:inline-block;
+}
+
+.chronoContainer{
+    width:100%;
+    margin:10px auto 20px auto;
+    display:inline-block;
+}
+
+.askedColorContainer, .scoreContainer, .bestScoreContainer, .buttonsContainer{
+    height:70px;
+    width:100%;
+    margin:10px auto 0 auto;
+}
+
+.chronoContainer h3{
+    font-size: 50px;
+    text-align:center;
+    color:#222;
+     text-shadow: 
+    #fff 1px 1px 1px, 
+    #fff -1px 1px 1px, 
+    #fff -1px -1px 1px, 
+    #fff 1px -1px 1px;  
+}
+
+.askedColorContainer h3, .scoreContainer h3, .bestScoreContainer h3{
+    font-size: 25px;
+    text-decoration: underline;
+    color:#222;
+}
+
+.jsTextElement{
+    color:#222;
+    text-shadow: 
+    #222 1px 1px 1px, 
+    #222 -1px 1px 1px, 
+    #222 -1px -1px 1px, 
+    #222 1px -1px 1px;  
+}
+
+.askedColorContainer .jsTextElement{
+    font-size:35px;
+}
+
+.scoreContainer .jsTextElement, .bestScoreContainer .jsTextElement{
+     font-size: 50px;
+}
+
+.buttonsContainer .jsTextElement{
+    font-size:30px;
+}
+
+/* XS */
+@media screen and (min-width:0px) and (max-width:767px)
+{
+    .askedColorContainer{
+        text-align:center;
+    }
+
+    .askedColorContainer .jsTextElement{
+    font-size:22px;
+    }
+
+    .scoreContainer, .bestScoreContainer{
+        margin-top:0px;
+    }
+
+    .scoreContainer h3, .bestScoreContainer h3{
+        font-size:22px;
+        text-align:center;
+    }
+
+    .chronoContainer h3{
+    font-size: 30px;
+    }
+
+}
+
+/* BUTTONS */
+
+.difficultyButton{
+    text-align:center;
+}
+
+.styled {
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 20px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 10px;
+    background-color: rgba(220, 0, 0, 1);
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.styled:hover {
+    background-color: rgba(255, 0, 0, 1);
+}
+
+.styled:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                        inset 2px 2px 3px rgba(0, 0, 0, .6);
+}

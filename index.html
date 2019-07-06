@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Color Game</title>
+        <description style="display: none">A small JavaScript game : Color-Game</description>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" property="og:description" content="A small JavaScript game : Color-Game">
+        <meta name="author" content="Clément LANDAIS">
+        <link rel="stylesheet" href="css//style.css">
+        <script src="js//script.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <header>
+            <div class="headerContainer">
+                <h1 class="headerTitle">Welcome to the Color-Game !</h1>
+                <h2 class="headerSubTitle">Made by Clément Landais</h2>
+            </div>
+        </header>
+        <div id="game">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 marginTop50px">
+                        <div id="colorGrid"></div>
+                    </div>
+                    <div class="col-lg-5 marginTop50px">
+                        <div class="sideBar">
+                            <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4 chronoContainer">
+                                <h3>Timer</h3>
+                                <div id="chrono"></div>
+                            </div>
+                            <div class="col-lg-12 col-md-8 col-sm-8 col-xs-8 askedColorContainer">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 col-sm-5 col-xs-12">
+                                        <h3>Asked color:</h3>
+                                    </div>
+                                    <div class="col-lg-7 col-md-8 col-sm-7 col-xs-12 jsTextElement">
+                                        <div id="askedColor"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-8 col-sm-8 col-xs-12 scoreContainer">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 col-sm-5 col-xs-8">
+                                        <h3>Your score:</h3>
+                                    </div>
+                                    <div class="col-lg-7 col-md-8 col-sm-7 col-xs-4 jsTextElement">
+                                        <div id="score"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-8 col-sm-8 col-xs-12 bestScoreContainer">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-4 col-sm-5 col-xs-8">
+                                        <h3>Best score:</h3>
+                                    </div>
+                                    <div class="col-lg-7 col-md-8 col-sm-7 col-xs-4 jsTextElement">
+                                        <div id="bestScore"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 buttonsContainer">
+                                <div class="row justify-content-center">
+                                    <div class="difficultyButton col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <button id="normalButton" class="styled" type="button">Normal</button>
+                                    </div>
+                                    <div class="difficultyButton col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <button id="hardButton" class="styled" type="button">Hard</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+
+</html>
