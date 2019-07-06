@@ -26,7 +26,6 @@ window.onload = function(){
 
     /* game */
     var gameOver = true;
-    var counterRunning = false; /* -------------------------- */
     var rightColorWasClicked = false;
     var firstLoop = true;
     var askedColorBox;
