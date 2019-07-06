@@ -268,7 +268,6 @@ window.onload = function(){
         const rect = canvas.getBoundingClientRect();
         xClick = event.clientX - rect.left - gridCanvasBorderWidth;
         yClick = event.clientY - rect.top - gridCanvasBorderWidth;
-        console.log("x: " + xClick + " y: " + yClick)
     }
 
     /* This function starts a new game when a click occurred on the gridCanvas when no game is running */
