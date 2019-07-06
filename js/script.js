@@ -50,7 +50,7 @@ window.onload = function(){
         drawInitialMessage();
         document.getElementById("score").innerHTML = score;
         document.getElementById("bestScore").innerHTML = bestScore;
-        document.getElementById("difficulty").innerHTML = difficulty;
+        document.getElementById("normalButton").style.border = "2px solid black";
     }
 
     /* This funtion creates all elements of the grid */
@@ -282,14 +282,16 @@ window.onload = function(){
      normalBut.onclick = function()
    {
         difficulty = "Normal";
-        document.getElementById("difficulty").innerHTML = difficulty;
+        document.getElementById("normalButton").style.border = "2px solid black";
+        document.getElementById("hardButton").style.border = "0";
     };
 
     /* This function sets the difficulty to hard */
     hardBut.onclick = function()
    {
         difficulty = "Hard";
-        document.getElementById("difficulty").innerHTML = difficulty;
+        document.getElementById("normalButton").style.border = "0";
+        document.getElementById("hardButton").style.border = "2px solid black";
    };
 
     /* KEYBOARD HANDLER */

@@ -250,9 +250,17 @@ header
         text-align:center;
     }
 
+    .chronoContainer h3{
+    font-size: 30px;
+    }
+
 }
 
 /* BUTTONS */
+
+.difficultyButton{
+    text-align:center;
+}
 
 .styled {
     border: 0;
