@@ -8,7 +8,7 @@ window.onload = function(){
     var chronoFontSize = Math.min(120,  window.innerWidth*0.18); // in pixels
     var chronoCtx;
     var counterColor = "gray";
-    var gameLength = 5;
+    var gameLength = 20;
     var counterClock = gameLength;
     var delayClock = 1000; // 1 second 
     var timeout;
