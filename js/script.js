@@ -3,8 +3,9 @@ window.onload = function(){
     /* VARIABLES */
 
     /* chrono */
-    var chronoWidth = 150;
-    var chronoHeight = 110;
+    var chronoWidth = Math.min(150,  window.innerWidth*0.225);
+    var chronoHeight = Math.min(110,  window.innerWidth*0.165);
+    var chronoFontSize = Math.min(120,  window.innerWidth*0.18); // in pixels
     var chronoCtx;
     var counterColor = "gray";
     var gameLength = 5;
@@ -32,7 +33,7 @@ window.onload = function(){
     var askedColorBox;
     var xClick = -100;
     var yClick = -100;
-    var difficulty = "normal";
+    var difficulty = "Normal";
     var normalBut = document.getElementById('normalButton');
     var hardBut = document.getElementById('hardButton');
 
@@ -173,9 +174,11 @@ window.onload = function(){
         var centerX = gridSize / 2;
         var centerY = gridSize / 2;
         gridCtx.fillStyle = "#000";
-        gridCtx.font = "bold 45px sans-serif";
-        gridCtx.strokeText("Press space key to play", centerX, centerY);
-        gridCtx.fillText("Press space key to play", centerX, centerY);
+        gridCtx.font = "bold "+(gridSize/13.33).toString()+"px sans-serif";
+        gridCtx.strokeText("Press space key or", centerX, centerY-30);
+        gridCtx.fillText("Press space key or", centerX, centerY-30);
+        gridCtx.strokeText("double click here to play", centerX, centerY+30);
+        gridCtx.fillText("double click here to play", centerX, centerY+30);
     }
 
     /* This function displays game over message */
@@ -184,18 +187,20 @@ window.onload = function(){
         var centerX = gridSize / 2;
         var centerY = gridSize / 2;
         gridCtx.fillStyle = "#000";
-        gridCtx.font = "bold 75px sans-serif";
+        gridCtx.font = "bold "+(gridSize/8).toString()+"px sans-serif";
         gridCtx.strokeText("Game Over", centerX, centerY-40);
         gridCtx.fillText("Game Over", centerX, centerY-40);
-        gridCtx.font = "bold 35px sans-serif";
-        gridCtx.strokeText("Press space key to play again", centerX, centerY+40);
-        gridCtx.fillText("Press space key to play again", centerX, centerY+40);
+        gridCtx.font = "bold "+(gridSize/17.14).toString()+"px sans-serif";
+        gridCtx.strokeText("Press space key or double", centerX, centerY+40);
+        gridCtx.fillText("Press space key or double", centerX, centerY+40);
+        gridCtx.strokeText("click here to play again", centerX, centerY+90);
+        gridCtx.fillText("click here to play again", centerX, centerY+90);
     }
 
     /* This function displays a new number on the counter */
     function drawCounter(){
         chronoCtx.clearRect(0,0, chronoWidth, chronoHeight);
-        chronoCtx.font = "bold 120px sans-serif";
+        chronoCtx.font = "bold "+chronoFontSize.toString()+"px sans-serif";
         chronoCtx.fillStyle = counterColor;
         chronoCtx.textAlign = "center";
         chronoCtx.textBaseline = "middle";
@@ -214,9 +219,9 @@ window.onload = function(){
         var newColorSequence = [];
         var randomColor;
         while (newColorSequence.length<9){
-            if(difficulty==="normal"){
+            if(difficulty==="Normal"){
                 randomColor = classicColors[getRandomInt(classicColors.length)];
-            } else if(difficulty==="hard"){
+            } else if(difficulty==="Hard"){
                 randomColor = hardColors[getRandomInt(hardColors.length)];
             }
             if (!inArray(randomColor, newColorSequence)){
@@ -258,6 +263,7 @@ window.onload = function(){
 
     /* MOUSE HANDLER */
 
+    /* This function gets the X and Y coordinates of a click on the gridCanvas */
     function getCursorPosition(canvas, event) {
         const rect = canvas.getBoundingClientRect();
         xClick = event.clientX - rect.left - gridCanvasBorderWidth;
@@ -265,17 +271,25 @@ window.onload = function(){
         console.log("x: " + xClick + " y: " + yClick)
     }
 
-     /* This function set the difficulty to normal */
+    /* This function starts a new game when a click occurred on the gridCanvas when no game is running */
+    document.getElementById("colorGrid").ondblclick = function(){
+        var clickCounter;
+        if(gameOver){
+            startGame();
+        }
+    }
+
+     /* This function sets the difficulty to normal */
      normalBut.onclick = function()
    {
-        difficulty = "normal";
+        difficulty = "Normal";
         document.getElementById("difficulty").innerHTML = difficulty;
     };
 
-    /* This function set the difficulty to hard */
+    /* This function sets the difficulty to hard */
     hardBut.onclick = function()
    {
-        difficulty = "hard";
+        difficulty = "Hard";
         document.getElementById("difficulty").innerHTML = difficulty;
    };
 

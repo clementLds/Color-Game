@@ -11,7 +11,7 @@ body
 
 header
 {
-    width: 100vw;
+    width:100vw;
     height:200px;
     text-align: center;
     background-image: linear-gradient(to bottom, #0B173B,#084B8A);
@@ -45,6 +45,7 @@ header
     text-align:right;
 }
 
+/* XL */
 @media screen and (min-width:1201px) and (max-width:1500px)
 {
     header
@@ -69,6 +70,7 @@ header
     }
 }
 
+/* LG */
 @media screen and (min-width:992px) and (max-width:1200px)
 {
     header
@@ -93,6 +95,7 @@ header
     }
 }
 
+/* MD */
 @media screen and (min-width:768px) and (max-width:991px)
 {
     header
@@ -117,6 +120,7 @@ header
     }
 }
 
+/* SM */
 @media screen and (min-width:576px) and (max-width:767px)
 {
     header
@@ -142,6 +146,7 @@ header
     }
 }
 
+/* XS */
 @media screen and (min-width:0px) and (max-width:575px)
 {
     header
@@ -176,18 +181,19 @@ header
 .sideBar{
     background-color: #ddd;
     border:2px solid #222;
-    height:620px;
+    display:inline-block;
 }
 
 .chronoContainer{
     width:100%;
-    margin: 30px auto 60px auto;
+    margin:10px auto 20px auto;
+    display:inline-block;
 }
 
-.askedColorContainer, .scoreContainer, .bestScoreContainer{
+.askedColorContainer, .scoreContainer, .bestScoreContainer, .buttonsContainer{
     height:70px;
     width:100%;
-    margin:20px auto 0 auto;
+    margin:10px auto 0 auto;
 }
 
 .chronoContainer h3{
@@ -208,7 +214,6 @@ header
 }
 
 .jsTextElement{
-    font-size: 50px;
     color:#222;
     text-shadow: 
     #222 1px 1px 1px, 
@@ -217,13 +222,43 @@ header
     #222 1px -1px 1px;  
 }
 
-/* buttons */
+.askedColorContainer .jsTextElement{
+    font-size:35px;
+}
+
+.scoreContainer .jsTextElement, .bestScoreContainer .jsTextElement{
+     font-size: 50px;
+}
+
+.buttonsContainer .jsTextElement{
+    font-size:30px;
+}
+
+/* XS */
+@media screen and (min-width:0px) and (max-width:767px)
+{
+    .askedColorContainer{
+        text-align:center;
+    }
+
+    .scoreContainer, .bestScoreContainer{
+        margin-top:0px;
+    }
+
+    .scoreContainer h3, .bestScoreContainer h3{
+        font-size:22px;
+        text-align:center;
+    }
+
+}
+
+/* BUTTONS */
 
 .styled {
     border: 0;
     line-height: 2.5;
     padding: 0 20px;
-    font-size: 1rem;
+    font-size: 20px;
     text-align: center;
     color: #fff;
     text-shadow: 1px 1px 1px #000;
