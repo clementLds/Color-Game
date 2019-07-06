@@ -205,7 +205,7 @@ window.onload = function(){
         chronoCtx.textAlign = "center";
         chronoCtx.textBaseline = "middle";
         var centerX = chronoWidth / 2;
-        var centerY = chronoHeight / 2+8;
+        var centerY = chronoHeight / 2;
         chronoCtx.fillText(counterClock.toString(), centerX, centerY);
     }
 
