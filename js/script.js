@@ -13,14 +13,14 @@ window.onload = function(){
     var timeout;
 
     /* color grid */
-    var classicColors=["blue", "yellow", "green", "purple", "black", "gray", "pink", "red", "orange", "brown"];
-    var hardColors=["blue", "yellow", "green", "purple", "black", "gray", "pink", "red", "orange", "brown"];
+    var classicColors=["Blue", "Yellow", "Green", "Purple", "Black", "Gray", "Pink", "Red", "Orange", "Brown"];
+    var hardColors=["LightSeaGreen", "LightBlue", "LightSteelBlue", "DodgerBlue", "DarkTurquoise", "DarkSeaGreen", "PaleGreen ", "Cyan", "CornflowerBlue", "Aquamarine"];
     var currentColorBoxSequence = [];
     var gridSize = Math.min(600, window.innerWidth*0.8, window.innerHeight*0.8);
     var blockSize = gridSize/3;
     var gridCanvasBorderWidth = 10; // in pixels
     var gridCtx;
-
+    
     /* score */
     var score = 0;
     var bestScore = 0;
@@ -33,6 +33,8 @@ window.onload = function(){
     var xClick = -100;
     var yClick = -100;
     var difficulty = "normal";
+    var normalBut = document.getElementById('normalButton');
+    var hardBut = document.getElementById('hardButton');
 
     /* MAIN PROGRAM */
 
@@ -44,8 +46,10 @@ window.onload = function(){
     function init(){
         initGrid();
         initChrono();
-        drawGrid();
         drawInitialMessage();
+        document.getElementById("score").innerHTML = score;
+        document.getElementById("bestScore").innerHTML = bestScore;
+        document.getElementById("difficulty").innerHTML = difficulty;
     }
 
     /* This funtion creates all elements of the grid */
@@ -90,6 +94,7 @@ window.onload = function(){
             firstLoop = true;
             counterClock=gameLength;
             count();
+            drawGrid();
             askNewColorBox();
             gameLoop();
         }
@@ -209,7 +214,11 @@ window.onload = function(){
         var newColorSequence = [];
         var randomColor;
         while (newColorSequence.length<9){
-            randomColor = classicColors[getRandomInt(10)];
+            if(difficulty==="normal"){
+                randomColor = classicColors[getRandomInt(classicColors.length)];
+            } else if(difficulty==="hard"){
+                randomColor = hardColors[getRandomInt(hardColors.length)];
+            }
             if (!inArray(randomColor, newColorSequence)){
                 newColorSequence.push(randomColor);
             }
@@ -238,16 +247,6 @@ window.onload = function(){
         document.getElementById("askedColor").innerHTML = askedColorBox.color.fontcolor(askedColorBox.color);
     }
 
-    /* This function set the difficulty to normal */
-    function setToNormalMode(){
-        difficulty = "normal";
-    }
-
-     /* This function set the difficulty to hard */
-    function setToHardMode(){
-        difficulty = "hard";
-    }
-
     /* CLASSES */
 
     /* Class ColorBox : an instance a this class corresponds to a color square on the gridCanvas */
@@ -265,6 +264,20 @@ window.onload = function(){
         yClick = event.clientY - rect.top - gridCanvasBorderWidth;
         console.log("x: " + xClick + " y: " + yClick)
     }
+
+     /* This function set the difficulty to normal */
+     normalBut.onclick = function()
+   {
+        difficulty = "normal";
+        document.getElementById("difficulty").innerHTML = difficulty;
+    };
+
+    /* This function set the difficulty to hard */
+    hardBut.onclick = function()
+   {
+        difficulty = "hard";
+        document.getElementById("difficulty").innerHTML = difficulty;
+   };
 
     /* KEYBOARD HANDLER */
 
