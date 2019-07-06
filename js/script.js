@@ -7,7 +7,7 @@ window.onload = function(){
     var chronoHeight = 110;
     var chronoCtx;
     var counterColor = "gray";
-    var gameLength = 30;
+    var gameLength = 5;
     var counterClock = gameLength;
     var delayClock = 1000; // 1 second 
     var timeout;
@@ -27,7 +27,8 @@ window.onload = function(){
     /* game */
     var gameOver = true;
     var counterRunning = false; /* -------------------------- */
-    var rightColorWasClicked = true;
+    var rightColorWasClicked = false;
+    var firstLoop = true;
     var askedColorBox;
     var xClick = -100;
     var yClick = -100;
@@ -37,19 +38,13 @@ window.onload = function(){
     init();
 
     /* FUNTIONS */
-
-    function getCursorPosition(canvas, event) {
-        const rect = canvas.getBoundingClientRect();
-        xClick = event.clientX - rect.left - gridCanvasBorderWidth;
-        yClick = event.clientY - rect.top - gridCanvasBorderWidth;
-        console.log("x: " + xClick + " y: " + yClick)
-    }
     
     /* This functions initializes all the program */
     function init(){
         initGrid();
         initChrono();
         drawGrid();
+        drawInitialMessage();
     }
 
     /* This funtion creates all elements of the grid */
@@ -67,6 +62,9 @@ window.onload = function(){
         gridCanvas.addEventListener('mousedown', function(e) {
             getCursorPosition(gridCanvas, e)
         })
+        gridCtx.textAlign = "center";
+        gridCtx.textBaseline = "middle";
+        gridCtx.strokeStyle = "white";
     }
 
     /* This funtion creates all elements of the chrono */
@@ -82,10 +80,12 @@ window.onload = function(){
         document.getElementById("chrono").appendChild(chronoCanvas);
     }
 
+    /* This function starts a new game */
     function startGame(){
         if(gameOver){ // no game running
             gameOver = false;
             score = 0;
+            firstLoop = true;
             counterClock=gameLength;
             count();
             askNewColorBox();
@@ -98,37 +98,49 @@ window.onload = function(){
         if(xClick>=askedColorBox.xCoord*blockSize && xClick<(askedColorBox.xCoord+1)*blockSize && yClick>=askedColorBox.yCoord*blockSize && yClick<(askedColorBox.yCoord+1)*blockSize){
             rightColorWasClicked = true;
         }
-        if(rightColorWasClicked){
-            rightColorWasClicked = false;
-            drawGrid();
-            askNewColorBox();
+        if(rightColorWasClicked || firstLoop){
             xClick = -100;
             yClick = -100;
-            score++;
+            drawGrid();
+            askNewColorBox();
+            if(rightColorWasClicked){
+                rightColorWasClicked = false;
+                score++;
+            }
+            if(firstLoop) {
+                firstLoop = false;
+            }
             document.getElementById("score").innerHTML = score;
         }
-        if(counterClock>0){
+        if(counterClock>=0){
             timeout = setTimeout(gameLoop, 50);
         }  else {
-            gameOver = true;
+            drawGameOverMessage();
             if(score>bestScore){
                 bestScore = score;
                 document.getElementById("bestScore").innerHTML = bestScore;
             }
+            document.getElementById("askedColor").innerHTML = "";
+            gameOver = true;
         }
     }
 
     /* This recursive function does the time count */
     function count(){
+        if(gameOver){
+            return;
+        }
         if(counterClock>5){
             counterColor = "gray";
         } else {
             counterColor = "red";
         }
-        drawCounter();
-        if(counterClock>0){
+        if(counterClock>=0){
+            drawCounter();
             counterClock --;
-            timeout = setTimeout(count, delayClock);
+            if(counterClock>=0){
+                timeout = setTimeout(count, delayClock);
+            }
         }
     }
 
@@ -148,6 +160,31 @@ window.onload = function(){
         }
     }
 
+     /* This function displays initial message */
+    function drawInitialMessage(){
+        gridCtx.clearRect(0,0, gridSize, gridSize);
+        var centerX = gridSize / 2;
+        var centerY = gridSize / 2;
+        gridCtx.fillStyle = "#000";
+        gridCtx.font = "bold 45px sans-serif";
+        gridCtx.strokeText("Press space key to play", centerX, centerY);
+        gridCtx.fillText("Press space key to play", centerX, centerY);
+    }
+
+    /* This function displays game over message */
+    function drawGameOverMessage(){
+        gridCtx.clearRect(0,0, gridSize, gridSize);
+        var centerX = gridSize / 2;
+        var centerY = gridSize / 2;
+        gridCtx.fillStyle = "#000";
+        gridCtx.font = "bold 75px sans-serif";
+        gridCtx.strokeText("Game Over", centerX, centerY-40);
+        gridCtx.fillText("Game Over", centerX, centerY-40);
+        gridCtx.font = "bold 35px sans-serif";
+        gridCtx.strokeText("Press space key to play again", centerX, centerY+40);
+        gridCtx.fillText("Press space key to play again", centerX, centerY+40);
+    }
+
     /* This function displays a new number on the counter */
     function drawCounter(){
         chronoCtx.clearRect(0,0, chronoWidth, chronoHeight);
@@ -155,9 +192,9 @@ window.onload = function(){
         chronoCtx.fillStyle = counterColor;
         chronoCtx.textAlign = "center";
         chronoCtx.textBaseline = "middle";
-        var centreX = chronoWidth / 2;
-        var centreY = chronoHeight / 2+8;
-        chronoCtx.fillText(counterClock.toString(), centreX, centreY);
+        var centerX = chronoWidth / 2;
+        var centerY = chronoHeight / 2+8;
+        chronoCtx.fillText(counterClock.toString(), centerX, centerY);
     }
 
     /* This function returns a random int between 0 and max-1 */
@@ -206,17 +243,15 @@ window.onload = function(){
         this.color = color;
         this.xCoord = x;
         this.yCoord = y;
-        
-        // method that allows to draw the snake
-        
-        // this.draw = function(){
-        //     ctx.save();
-        //     ctx.fillStyle = "#ff0000";
-        //     for(var i=0; i<this.body.length;i++){
-        //             drawBlock(ctx, this.body[i]);
-        //     }
-        //     ctx.restore();
-        // };
+    }
+
+    /* MOUSE HANDLER */
+
+    function getCursorPosition(canvas, event) {
+        const rect = canvas.getBoundingClientRect();
+        xClick = event.clientX - rect.left - gridCanvasBorderWidth;
+        yClick = event.clientY - rect.top - gridCanvasBorderWidth;
+        console.log("x: " + xClick + " y: " + yClick)
     }
 
     /* KEYBOARD HANDLER */
@@ -233,7 +268,3 @@ window.onload = function(){
     }
     
 }
-
- 
-    
-   
